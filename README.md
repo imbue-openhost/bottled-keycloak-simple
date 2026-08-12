@@ -1,14 +1,14 @@
-# openhost-keycloak-simple
+# bottled-keycloak-simple
 
-[Keycloak](https://www.keycloak.org/) 26 packaged as an OpenHost app, with
+[Keycloak](https://www.keycloak.org/) 26 packaged as a Cloud in a Bottle app, with
 automatic owner SSO into the admin console.
 
 ## What you get
 
 - Keycloak 26.3 (Quarkus, pre-built with `kc.sh build` for fast startup)
 - H2 `dev-file` database persisted under `$OPENHOST_APP_DATA_DIR/h2`
-- A stdlib-Python auth proxy on the OpenHost-routed port `8080` that:
-  - auto-logs the OpenHost owner into the admin console (no password to
+- A stdlib-Python auth proxy on the Cloud in a Bottle-routed port `8080` that:
+  - auto-logs the Cloud in a Bottle owner into the admin console (no password to
     remember), and
   - passes realm endpoints (`/realms/`, `/resources/`) through for
     anonymous visitors, so external apps can use this Keycloak as an
@@ -16,7 +16,7 @@ automatic owner SSO into the admin console.
 
 ## Auth model
 
-When the OpenHost owner opens `https://keycloak.<zone>/`, the OpenHost
+When the Cloud in a Bottle owner opens `https://keycloak.<zone>/`, the Cloud in a Bottle
 router stamps `X-OpenHost-Is-Owner: true` on the request (and strips any
 client-supplied `X-OpenHost-*` headers, so only the real owner carries it).
 On an owner HTML navigation without a Keycloak session cookie, the proxy:
@@ -59,7 +59,7 @@ stateful app — but no plaintext secrets.
 - `/robots.txt`
 
 The admin console (`/admin/...`) and the root redirect stay behind
-OpenHost owner auth. Note that the **master realm's** login endpoints are
+Cloud in a Bottle owner auth. Note that the **master realm's** login endpoints are
 public like any other realm's (this is how Keycloak normally runs); admin
 access still requires valid credentials, and the only admin users are the
 per-boot random ones.
