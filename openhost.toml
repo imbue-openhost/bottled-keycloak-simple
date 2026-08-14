@@ -1,7 +1,7 @@
 [app]
 name = "keycloak"
 version = "0.1.0"
-description = "Keycloak identity and access management server with OpenHost owner SSO"
+description = "Keycloak identity and access management server with Cloud in a Bottle owner SSO"
 authors = ["Andrew Laack <andrew@laack.co>"]
 
 [runtime.container]
